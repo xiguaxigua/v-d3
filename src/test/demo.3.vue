@@ -1,9 +1,9 @@
 <template>
-  <svg class="vd-line" ref="svg"></svg>
+  <svg ref="svg"></svg>
 </template>
 
 <script>
-import * as d3 from './deps'
+import * as d3 from 'd3'
 import _flatten from 'lodash/flatten'
 
 const DEFAULT_DATA = [
@@ -161,7 +161,7 @@ export default {
 
         this.bodyG.selectAll(`circle._${i}`)
           .data(list)
-          .style('stroke', () => this.colors[i])
+          .style('stroke', (d, i) => this.colors[i])
           .transition()
           .attr('cx', d => this.x(d.x))
           .attr('cy', d => this.y(d.y))
@@ -187,29 +187,27 @@ export default {
 }
 </script>
 
-<style lang="less">
-.vd-line {
-  .axis path, .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-  }
+<style>
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
 
-  .axis .grid-line{
-      stroke: black;
-      shape-rendering: crispEdges;
-      stroke-opacity: .2;
-  }
+.axis .grid-line{
+    stroke: black;
+    shape-rendering: crispEdges;
+    stroke-opacity: .2;
+}
 
-  .line{
-      fill: none;    
-      stroke: steelblue;
-      stroke-width: 2;
-  }
-
-  .dot {
-    fill: #fff;
+.line{
+    fill: none;    
     stroke: steelblue;
-  }
+    stroke-width: 2;
+}
+
+.dot {
+  fill: #fff;
+  stroke: steelblue;
 }
 </style>

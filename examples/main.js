@@ -3,10 +3,6 @@ import Vue from 'vue'
 import router from './router'
 import 'normalize.css'
 
-import CodeSection from './components/code-section'
-
-Vue.component(CodeSection.name, CodeSection)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
