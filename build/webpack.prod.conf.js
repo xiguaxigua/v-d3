@@ -5,7 +5,7 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-module.exports = merge(baseWebpackConfig, {
+var webpackConfig = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -67,3 +67,9 @@ module.exports = merge(baseWebpackConfig, {
     })
   ]
 })
+
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+
+
+module.exports = webpackConfig
