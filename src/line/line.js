@@ -34,7 +34,7 @@ function getData (args) {
 }
 
 function getAxis (args) {
-  const { dimension, rows, axisSite, yAxisType, yAxisName } = args
+  const { dimension, rows, axisSite, yAxisType, yAxisName, xAxisName } = args
   const result = {
     x: {
       type: 'category',
@@ -65,6 +65,13 @@ function getAxis (args) {
       }
     })
   }
+
+  if (xAxisName) {
+    result.x.label = {
+      text: xAxisName,
+      position: 'inner-top'
+    }
+  }
   return result
 }
 
@@ -74,7 +81,7 @@ export const line = (columns, rows, settings, extra) => {
     yAxisType = ['normal', 'normal'],
     yAxisName = [],
     dimension = [columns[0]],
-    // xAxisName = [],
+    xAxisName = [],
     // axisVisible = true,
     area,
     stack,
@@ -92,6 +99,6 @@ export const line = (columns, rows, settings, extra) => {
   }
 
   const data = getData({ dimension, metrics, rows, area, stack, axisSite })
-  const axis = getAxis({ dimension, rows, axisSite, yAxisType, yAxisName })
+  const axis = getAxis({ dimension, rows, axisSite, yAxisType, yAxisName, xAxisName })
   return { data, axis }
 }

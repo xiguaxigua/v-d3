@@ -27,7 +27,8 @@ const CHART_SETTINGS = {
     right: ['比率']
   },
   yAxisType: ['KMB', 'percent'],
-  yAxisName: ['数值', '比率']
+  yAxisName: ['数值', '比率'],
+  xAxisName: '日期'
 }
 export default {
   name: 'Test',
