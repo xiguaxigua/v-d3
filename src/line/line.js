@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { X_AXIS_SIGN } from '../chart-base'
+import { getFormated } from '../utils'
 
 function getData (args) {
   const { metrics, rows, area, stack, axisSite } = args
@@ -33,17 +34,27 @@ function getData (args) {
 }
 
 function getAxis (args) {
-  const { dimension, rows, axisSite } = args
+  const { dimension, rows, axisSite, yAxisType } = args
   const result = {
     x: {
       type: 'category',
       categories: rows.map(row => row[dimension])
-    }
+    },
+    y: {},
+    y2: {}
   }
   if (axisSite && axisSite.right) {
-    result.y2 = {
-      show: true
-    }
+    result.y2.show = true
+  }
+  if (yAxisType) {
+    yAxisType.forEach((item, index) => {
+      const label = index === 0 ? 'y' : 'y2'
+      result[label].tick = {
+        format: function (v) {
+          return getFormated(v, item)
+        }
+      }
+    })
   }
   return result
 }
@@ -51,7 +62,7 @@ function getAxis (args) {
 export const line = (columns, rows, settings, extra) => {
   const {
     axisSite = { right: [] },
-    // yAxisType = ['normal', 'normal'],
+    yAxisType = ['normal', 'normal'],
     // yAxisName = [],
     dimension = [columns[0]],
     // xAxisName = [],
@@ -72,6 +83,6 @@ export const line = (columns, rows, settings, extra) => {
   }
 
   const data = getData({ dimension, metrics, rows, area, stack, axisSite })
-  const axis = getAxis({ dimension, rows, axisSite })
+  const axis = getAxis({ dimension, rows, axisSite, yAxisType })
   return { data, axis }
 }
