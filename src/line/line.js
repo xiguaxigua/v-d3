@@ -34,17 +34,27 @@ function getData (args) {
 }
 
 function getAxis (args) {
-  const { dimension, rows, axisSite, yAxisType, yAxisName, xAxisName } = args
+  const {
+    dimension,
+    rows,
+    axisSite,
+    yAxisType,
+    yAxisName,
+    xAxisName,
+    axisVisible
+  } = args
   const result = {
     x: {
+      show: axisVisible,
       type: 'category',
       categories: rows.map(row => row[dimension])
     },
-    y: {},
-    y2: {}
-  }
-  if (axisSite && axisSite.right) {
-    result.y2.show = true
+    y: {
+      show: axisVisible
+    },
+    y2: {
+      show: axisVisible && axisSite && axisSite.right
+    }
   }
   if (yAxisType) {
     yAxisType.forEach((item, index) => {
@@ -82,12 +92,9 @@ export const line = (columns, rows, settings, extra) => {
     yAxisName = [],
     dimension = [columns[0]],
     xAxisName = [],
-    // axisVisible = true,
+    axisVisible = true,
     area,
     stack,
-    // scale = [false, false],
-    // min = [null, null],
-    // max = [null, null]
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -99,6 +106,14 @@ export const line = (columns, rows, settings, extra) => {
   }
 
   const data = getData({ dimension, metrics, rows, area, stack, axisSite })
-  const axis = getAxis({ dimension, rows, axisSite, yAxisType, yAxisName, xAxisName })
+  const axis = getAxis({
+    dimension,
+    rows,
+    axisSite,
+    yAxisType,
+    yAxisName,
+    xAxisName,
+    axisVisible
+  })
   return { data, axis }
 }
