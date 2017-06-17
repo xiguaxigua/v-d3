@@ -28,8 +28,8 @@ const CHART_SETTINGS = {
   },
   yAxisType: ['KMB', 'percent'],
   yAxisName: ['数值', '比率'],
-  xAxisName: '日期',
-  axisVisible: false
+  xAxisName: '日期'
+  // axisVisible: false
 }
 export default {
   name: 'Test',

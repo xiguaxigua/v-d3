@@ -15,7 +15,10 @@ export default {
     height: {
       type: String,
       default: '400px'
-    }
+    },
+    beforeConfig: { type: Function },
+    afterConfig: { type: Function },
+    events: { type: Object }
   },
 
   computed: {
@@ -35,7 +38,19 @@ export default {
         return
       }
       const extra = {}
-      const options = this.chartHandler(columns, rows, this.settings, extra)
+      if (this.beforeConfig) this.beforeConfig({ columns, rows })
+      let options = this.chartHandler(columns, rows, this.settings, extra)
+      if (this.events) {
+        Object.keys(this.events).forEach(key => {
+          const [eventName, isDataEvent] = key.split('-')
+          if (isDataEvent) {
+            options.data[eventName] = this.events[key]
+          } else {
+            options[eventName] = this.events[key]
+          }
+        })
+      }
+      if (this.afterConfig) options = this.afterConfig(options)
       console.log(options)
       const c3Options = Object.assign({
         bindto: this.$refs.chart
