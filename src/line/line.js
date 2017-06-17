@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { X_AXIS_SIGN } from '../chart-base'
+import 'c3/c3.min.css'
 import { getFormated } from '../utils'
 
 function getData (args) {

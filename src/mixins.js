@@ -62,13 +62,11 @@ export default {
       if (this.grid) options.padding = this.grid
       if (this.colors) options.color = { pattern: this.colors }
       if (this.afterConfig) options = this.afterConfig(options)
-      options.legend = {
-        show: this.legendVisible,
-        position: this.legendPosition
-      }
-      options.tooltip = {
-        show: this.tooltipVisible
-      }
+      if (!options.legend) options.legend = {}
+      if (!options.tooltip) options.tooltip = {}
+      options.legend.show = this.legendVisible
+      options.legend.position = this.legendPosition
+      options.tooltip.show = this.tooltipVisible
       console.log(options)
       const c3Options = Object.assign({
         bindto: this.$refs.chart

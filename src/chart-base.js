@@ -1,5 +1,3 @@
-import 'c3/c3.min.css'
-export const X_AXIS_SIGN = 'X_AXIS_SIGN'
 export const colors = [
   '#19d4ae', '#5ab1ef', '#fa6e86',
   '#ffb980', '#0067a6', '#c4b4e4',
