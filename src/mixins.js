@@ -1,4 +1,5 @@
 import c3 from 'c3'
+import { colors } from './chart-base'
 
 export default {
   props: {
@@ -18,7 +19,12 @@ export default {
     },
     beforeConfig: { type: Function },
     afterConfig: { type: Function },
-    events: { type: Object }
+    events: { type: Object },
+    grid: { type: Object },
+    colors: {
+      type: Array,
+      default () { return colors }
+    }
   },
 
   computed: {
@@ -50,6 +56,8 @@ export default {
           }
         })
       }
+      if (this.grid) options.padding = this.grid
+      if (this.colors) options.color = { pattern: this.colors }
       if (this.afterConfig) options = this.afterConfig(options)
       console.log(options)
       const c3Options = Object.assign({
