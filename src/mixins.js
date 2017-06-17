@@ -24,7 +24,10 @@ export default {
     colors: {
       type: Array,
       default () { return colors }
-    }
+    },
+    tooltipVisible: { type: Boolean, default: true },
+    legendVisible: { type: Boolean, default: true },
+    legendPosition: { type: String, default: 'bottom' }// bototm, right, inset
   },
 
   computed: {
@@ -59,6 +62,13 @@ export default {
       if (this.grid) options.padding = this.grid
       if (this.colors) options.color = { pattern: this.colors }
       if (this.afterConfig) options = this.afterConfig(options)
+      options.legend = {
+        show: this.legendVisible,
+        position: this.legendPosition
+      }
+      options.tooltip = {
+        show: this.tooltipVisible
+      }
       console.log(options)
       const c3Options = Object.assign({
         bindto: this.$refs.chart
