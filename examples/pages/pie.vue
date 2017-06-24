@@ -18,19 +18,7 @@ const CHART_DATA = {
     { '日期': '1-6', '余额': 7123, '数值': 2123, '比率': 0.6 }
   ]
 }
-const CHART_SETTINGS = {
-  area: true,
-  stack: {
-    stack1: ['余额', '数值']
-  },
-  axisSite: {
-    right: ['比率']
-  },
-  yAxisType: ['KMB', 'percent'],
-  yAxisName: ['数值', '比率'],
-  xAxisName: '日期'
-  // axisVisible: false
-}
+const CHART_SETTINGS = {}
 export default {
   name: 'Test',
 
