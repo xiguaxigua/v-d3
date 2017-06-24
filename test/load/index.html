@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/d3@3.5.17/d3.min.js"></script>
+  <script src="https://unpkg.com/c3/c3.min.js"></script>
+  <script src="https://unpkg.com/v-d3/lib/index.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/c3/c3.min.css"></link>
+
+  <div id="app">
+    <vd-line :data="chartData" :settings="chartSettings"></vd-line>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        chartSettings: {}
+      },
+      created: function () {
+        this.chartData = {
+          columns: ['日期', '销售额-1季度'],
+          rows: [
+            { '日期': '1月1日', '销售额-1季度': 1523 },
+            { '日期': '1月2日', '销售额-1季度': 1223 },
+            { '日期': '1月3日', '销售额-1季度': 2123 },
+            { '日期': '1月4日', '销售额-1季度': 4123 },
+            { '日期': '1月5日', '销售额-1季度': 3123 },
+            { '日期': '1月6日', '销售额-1季度': 7123 }
+          ]
+        }
+        this.chartSettings = {}
+      }
+    })
+  </script>
+</body>
+</html>

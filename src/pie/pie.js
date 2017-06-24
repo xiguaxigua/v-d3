@@ -1,4 +1,3 @@
-/* eslint-disable */
 import 'c3/c3.min.css'
 import { getFormated } from '../utils'
 function getData (args) {
@@ -29,7 +28,7 @@ export const pie = (columns, rows, settings, extra) => {
   const {
     dataType = 'normal',
     dimension = columns[0],
-    metrics = columns[1],
+    metrics = columns[1]
   } = settings
   const data = getData({ dimension, metrics, rows, isRing })
   const tooltip = getTooltip({ dataType })

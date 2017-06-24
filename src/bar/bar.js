@@ -1,4 +1,3 @@
-/* eslint-disable */
 import 'c3/c3.min.css'
 import { getFormated } from '../utils'
 function getData (args) {
@@ -13,14 +12,16 @@ function getData (args) {
 
   const result = {
     columns,
-    type: 'bar',
+    type: 'bar'
   }
 
   if (stack) result.groups = Object.keys(stack).map(key => stack[key])
   const axisSiteLabel = isHistogram ? 'right' : 'top'
   if (axisSite && axisSite[axisSiteLabel]) {
     result.axes = {}
-    axisSite[axisSiteLabel].forEach(item => result.axes[item] = 'y2')
+    axisSite[axisSiteLabel].forEach(item => {
+      result.axes[item] = 'y2'
+    })
   }
 
   return result
@@ -62,7 +63,6 @@ function getAxis (args) {
       }
     })
   }
-  console.log(meaAxisName)
   if (meaAxisName) {
     meaAxisName.forEach((item, index) => {
       const label = index === 0 ? 'y' : 'y2'
@@ -83,13 +83,12 @@ function getAxis (args) {
 }
 
 export const bar = (columns, rows, settings, extra) => {
-   const {
+  const {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {},
     axisVisible = true
   } = settings
-  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
@@ -107,13 +106,12 @@ export const bar = (columns, rows, settings, extra) => {
 }
 
 export const histogram = (columns, rows, settings, extra) => {
-   const {
+  const {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {},
     axisVisible = true
   } = settings
-  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
@@ -129,4 +127,3 @@ export const histogram = (columns, rows, settings, extra) => {
   const axis = getAxis({ dimension, rows, axisSite, meaAxisType, meaAxisName, dimAxisName, axisVisible, isHistogram })
   return { data, axis }
 }
-

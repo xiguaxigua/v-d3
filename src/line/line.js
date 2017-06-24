@@ -1,4 +1,3 @@
-/* eslint-disable */
 import 'c3/c3.min.css'
 import { getFormated } from '../utils'
 
@@ -13,7 +12,7 @@ function getData (args) {
   })
   const result = {
     columns,
-    type: 'spline',
+    type: 'spline'
   }
 
   if (area) {
@@ -27,7 +26,9 @@ function getData (args) {
 
   if (axisSite && axisSite.right) {
     result.axes = {}
-    axisSite.right.forEach(item => result.axes[item] = 'y2')
+    axisSite.right.forEach(item => {
+      result.axes[item] = 'y2'
+    })
   }
 
   return result
@@ -94,9 +95,8 @@ export const line = (columns, rows, settings, extra) => {
     xAxisName = [],
     axisVisible = true,
     area,
-    stack,
+    stack
   } = settings
-  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
 
   if (settings.metrics) {

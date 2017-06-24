@@ -67,7 +67,7 @@ export default {
       options.legend.show = this.legendVisible
       options.legend.position = this.legendPosition
       options.tooltip.show = this.tooltipVisible
-      console.log(options)
+
       const c3Options = Object.assign({
         bindto: this.$refs.chart
       }, options)
