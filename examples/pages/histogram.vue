@@ -1,11 +1,11 @@
 <template>
   <div>
-    <vd-line :data="chartData" :settings="chartSettings"></vd-line>
+    <vd-histogram :data="chartData" :settings="chartSettings"></vd-histogram>
   </div>
 </template>
 
 <script>
-import VdLine from '../../src/line'
+import VdHistogram from '../../src/bar/histogram'
 
 const CHART_DATA = {
   columns: ['日期', '余额', '数值', '比率'],
@@ -19,7 +19,6 @@ const CHART_DATA = {
   ]
 }
 const CHART_SETTINGS = {
-  area: true,
   stack: {
     stack1: ['余额', '数值']
   },
@@ -40,6 +39,6 @@ export default {
     return {}
   },
 
-  components: { VdLine }
+  components: { VdHistogram }
 }
 </script>

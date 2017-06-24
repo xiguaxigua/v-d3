@@ -1,4 +1,5 @@
 /* eslint-disable */
+import 'c3/c3.min.css'
 import { getFormated } from '../utils'
 function getData (args) {
   const { dimension, metrics, rows, isRing } = args

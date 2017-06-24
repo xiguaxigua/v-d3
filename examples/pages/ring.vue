@@ -1,11 +1,11 @@
 <template>
   <div>
-    <vd-line :data="chartData" :settings="chartSettings"></vd-line>
+    <vd-ring :data="chartData" :settings="chartSettings"></vd-ring>
   </div>
 </template>
 
 <script>
-import VdLine from '../../src/line'
+import VdRing from '../../src/pie/ring'
 
 const CHART_DATA = {
   columns: ['日期', '余额', '数值', '比率'],
@@ -40,6 +40,6 @@ export default {
     return {}
   },
 
-  components: { VdLine }
+  components: { VdRing }
 }
 </script>

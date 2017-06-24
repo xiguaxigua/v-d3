@@ -1,11 +1,11 @@
 <template>
   <div>
-    <vd-line :data="chartData" :settings="chartSettings"></vd-line>
+    <vd-bar :data="chartData" :settings="chartSettings"></vd-bar>
   </div>
 </template>
 
 <script>
-import VdLine from '../../src/line'
+import VdBar from '../../src/bar'
 
 const CHART_DATA = {
   columns: ['日期', '余额', '数值', '比率'],
@@ -19,16 +19,15 @@ const CHART_DATA = {
   ]
 }
 const CHART_SETTINGS = {
-  area: true,
   stack: {
     stack1: ['余额', '数值']
   },
   axisSite: {
-    right: ['比率']
+    top: ['比率']
   },
-  yAxisType: ['KMB', 'percent'],
-  yAxisName: ['数值', '比率'],
-  xAxisName: '日期'
+  xAxisType: ['KMB', 'percent'],
+  xAxisName: ['数值', '比率'],
+  yAxisName: '日期'
   // axisVisible: false
 }
 export default {
@@ -40,6 +39,6 @@ export default {
     return {}
   },
 
-  components: { VdLine }
+  components: { VdBar }
 }
 </script>
